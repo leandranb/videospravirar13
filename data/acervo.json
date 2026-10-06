@@ -1,0 +1,372 @@
+{
+  "config": {
+    "nome": "Vídeos pra virar",
+    "siteUrl": "https://videospravirar.com.br",
+    "videosBaseUrl": "https://videos.videospravirar.com.br",
+    "guiaConversaUrl": "https://www.ondedapraconversar.com.br/",
+    "hashtags": [
+      "#Lula13",
+      "#SegundoTurno"
+    ],
+    "dataEleicao": "25 de outubro",
+    "dominioCurto": "virar13.com.br"
+  },
+  "segmentos": [
+    {
+      "id": "nao-votou",
+      "frase": "quem não foi votar",
+      "grupo": "Não votou em ninguém",
+      "temasPonte": [
+        "em-jogo"
+      ]
+    },
+    {
+      "id": "branco",
+      "frase": "quem votou em branco",
+      "grupo": "Não votou em ninguém",
+      "temasPonte": [
+        "em-jogo"
+      ]
+    },
+    {
+      "id": "nulo",
+      "frase": "quem anulou o voto",
+      "grupo": "Não votou em ninguém",
+      "temasPonte": [
+        "em-jogo",
+        "renda"
+      ]
+    },
+    {
+      "id": "cury",
+      "frase": "quem votou no Cury",
+      "grupo": "Votou em outro candidato",
+      "temasPonte": [
+        "educacao",
+        "saude-mental",
+        "saude",
+        "mulheres"
+      ]
+    },
+    {
+      "id": "renan",
+      "frase": "quem votou no Renan",
+      "grupo": "Votou em outro candidato",
+      "temasPonte": [
+        "saude",
+        "seguranca",
+        "industria"
+      ]
+    },
+    {
+      "id": "caiado",
+      "frase": "quem votou no Caiado",
+      "grupo": "Votou em outro candidato",
+      "temasPonte": [
+        "saude",
+        "seguranca",
+        "educacao",
+        "agro"
+      ]
+    },
+    {
+      "id": "zema",
+      "frase": "quem votou no Zema",
+      "grupo": "Votou em outro candidato",
+      "temasPonte": [
+        "saude",
+        "seguranca",
+        "mulheres"
+      ]
+    },
+    {
+      "id": "lula-2022",
+      "frase": "quem votou no Lula em 2022 e mudou",
+      "grupo": "Já votou no Lula",
+      "temasPonte": [
+        "renda",
+        "em-jogo"
+      ],
+      "rotulo": "Votou no Lula em 2022 e mudou"
+    }
+  ],
+  "canais": [
+    {
+      "id": "whatsapp",
+      "nome": "WhatsApp",
+      "frase": "pelo WhatsApp",
+      "formato": "9x16-leve",
+      "estilo": "conversa"
+    },
+    {
+      "id": "status",
+      "nome": "Status, Reels ou TikTok",
+      "frase": "no Status ou Reels",
+      "formato": "9x16",
+      "estilo": "hashtags"
+    },
+    {
+      "id": "feed",
+      "nome": "Feed do Instagram",
+      "frase": "no feed do Instagram",
+      "formato": "1x1",
+      "estilo": "hashtags"
+    },
+    {
+      "id": "youtube",
+      "nome": "YouTube",
+      "frase": "no YouTube",
+      "formato": "16x9",
+      "estilo": "descricao"
+    },
+    {
+      "id": "x",
+      "nome": "X (Twitter)",
+      "frase": "no X",
+      "formato": "16x9",
+      "estilo": "curto",
+      "limite": 280
+    }
+  ],
+  "formatos": {
+    "9x16-leve": "Vertical, versão leve",
+    "9x16": "Vertical, alta qualidade",
+    "1x1": "Quadrado",
+    "16x9": "Horizontal"
+  },
+  "temas": [
+    {
+      "id": "saude",
+      "nome": "Saúde e SUS"
+    },
+    {
+      "id": "educacao",
+      "nome": "Educação"
+    },
+    {
+      "id": "seguranca",
+      "nome": "Segurança"
+    },
+    {
+      "id": "mulheres",
+      "nome": "Mulheres"
+    },
+    {
+      "id": "renda",
+      "nome": "Emprego e renda"
+    },
+    {
+      "id": "agro",
+      "nome": "Quem planta"
+    },
+    {
+      "id": "saude-mental",
+      "nome": "Saúde mental"
+    },
+    {
+      "id": "industria",
+      "nome": "Indústria"
+    },
+    {
+      "id": "em-jogo",
+      "nome": "O que está em jogo"
+    }
+  ],
+  "videos": [
+    {
+      "slug": "video-01",
+      "publicado": false,
+      "titulo": "Título do vídeo 1",
+      "tema": "saude",
+      "duracao": "0:45",
+      "segmentos": [
+        "renan",
+        "caiado",
+        "zema"
+      ],
+      "objecao": "Objeção que este vídeo responde",
+      "fonte": {
+        "post": "https://x.com/ptbrasil/status/2107285323629891999"
+      },
+      "legendas": {
+        "padrao": "Legenda-base do vídeo 1. Gancho na primeira linha, uma frase sobre o que o vídeo mostra.",
+        "zema": "Legenda para quem votou no Zema: começa pelo ponto em comum e depois apresenta o vídeo."
+      },
+      "argumentos": [
+        {
+          "texto": "Argumento 1: um fato curto e verificável que reforça o vídeo.",
+          "fonte": "https://exemplo.gov.br/fonte-1"
+        },
+        {
+          "texto": "Argumento 2: como isso muda a vida de quem vai receber.",
+          "fonte": ""
+        },
+        {
+          "texto": "Argumento 3: resposta pra objeção mais comum.",
+          "fonte": ""
+        }
+      ]
+    },
+    {
+      "slug": "video-02",
+      "publicado": false,
+      "titulo": "Título do vídeo 2",
+      "tema": "em-jogo",
+      "duracao": "0:30",
+      "segmentos": [
+        "nao-votou",
+        "branco",
+        "nulo"
+      ],
+      "objecao": "Objeção que este vídeo responde",
+      "fonte": {
+        "post": "https://x.com/ptbrasil/status/2107285323629891999"
+      },
+      "legendas": {
+        "padrao": "Legenda-base do vídeo 2. Acolhe antes de argumentar.",
+        "nulo": "Legenda para quem anulou: reconhece a raiva e mostra que no dia 25 ela pode virar escolha."
+      },
+      "argumentos": [
+        {
+          "texto": "Argumento 1: um fato curto e verificável que reforça o vídeo.",
+          "fonte": "https://exemplo.gov.br/fonte-1"
+        },
+        {
+          "texto": "Argumento 2: como isso muda a vida de quem vai receber.",
+          "fonte": ""
+        },
+        {
+          "texto": "Argumento 3: resposta pra objeção mais comum.",
+          "fonte": ""
+        }
+      ]
+    },
+    {
+      "slug": "video-03",
+      "publicado": false,
+      "titulo": "Título do vídeo 3",
+      "tema": "educacao",
+      "duracao": "1:10",
+      "segmentos": [
+        "cury"
+      ],
+      "objecao": "Objeção que este vídeo responde",
+      "fonte": {
+        "post": "https://x.com/ptbrasil/status/2099896232827081130"
+      },
+      "legendas": {
+        "padrao": "Legenda-base do vídeo 3."
+      },
+      "argumentos": [
+        {
+          "texto": "Argumento 1: um fato curto e verificável que reforça o vídeo.",
+          "fonte": "https://exemplo.gov.br/fonte-1"
+        },
+        {
+          "texto": "Argumento 2: como isso muda a vida de quem vai receber.",
+          "fonte": ""
+        },
+        {
+          "texto": "Argumento 3: resposta pra objeção mais comum.",
+          "fonte": ""
+        }
+      ]
+    },
+    {
+      "slug": "video-04",
+      "publicado": false,
+      "titulo": "Título do vídeo 4",
+      "tema": "seguranca",
+      "duracao": "0:58",
+      "segmentos": [
+        "renan",
+        "zema"
+      ],
+      "objecao": "Objeção que este vídeo responde",
+      "fonte": {
+        "post": "https://x.com/ptbrasil/status/2107285323629891999"
+      },
+      "legendas": {
+        "padrao": "Legenda-base do vídeo 4."
+      },
+      "argumentos": [
+        {
+          "texto": "Argumento 1: um fato curto e verificável que reforça o vídeo.",
+          "fonte": "https://exemplo.gov.br/fonte-1"
+        },
+        {
+          "texto": "Argumento 2: como isso muda a vida de quem vai receber.",
+          "fonte": ""
+        },
+        {
+          "texto": "Argumento 3: resposta pra objeção mais comum.",
+          "fonte": ""
+        }
+      ]
+    },
+    {
+      "slug": "video-05",
+      "publicado": false,
+      "titulo": "Título do vídeo 5",
+      "tema": "renda",
+      "duracao": "0:40",
+      "segmentos": [
+        "lula-2022"
+      ],
+      "objecao": "Objeção que este vídeo responde",
+      "fonte": {
+        "post": "https://x.com/ptbrasil/status/2107285323629891999"
+      },
+      "legendas": {
+        "padrao": "Legenda-base do vídeo 5.",
+        "lula-2022": "Legenda para quem votou no Lula em 2022: reconhece a frustração antes de argumentar."
+      },
+      "argumentos": [
+        {
+          "texto": "Argumento 1: um fato curto e verificável que reforça o vídeo.",
+          "fonte": "https://exemplo.gov.br/fonte-1"
+        },
+        {
+          "texto": "Argumento 2: como isso muda a vida de quem vai receber.",
+          "fonte": ""
+        },
+        {
+          "texto": "Argumento 3: resposta pra objeção mais comum.",
+          "fonte": ""
+        }
+      ]
+    },
+    {
+      "slug": "video-06",
+      "publicado": false,
+      "titulo": "Título do vídeo 6",
+      "tema": "mulheres",
+      "duracao": "0:35",
+      "segmentos": [
+        "cury",
+        "zema"
+      ],
+      "objecao": "Objeção que este vídeo responde",
+      "fonte": {
+        "post": "https://x.com/ptbrasil/status/2107285323629891999"
+      },
+      "legendas": {
+        "padrao": "Legenda-base do vídeo 6."
+      },
+      "argumentos": [
+        {
+          "texto": "Argumento 1: um fato curto e verificável que reforça o vídeo.",
+          "fonte": "https://exemplo.gov.br/fonte-1"
+        },
+        {
+          "texto": "Argumento 2: como isso muda a vida de quem vai receber.",
+          "fonte": ""
+        },
+        {
+          "texto": "Argumento 3: resposta pra objeção mais comum.",
+          "fonte": ""
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,119 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <title>Vídeos pra virar</title>
+  <meta name="description" content="Vídeos pra virar o jogo. Escolha pra quem e por onde, e mande o vídeo certo com a mensagem pronta.">
+  <meta name="theme-color" content="#E2001A">
+  <meta property="og:title" content="Vídeos pra virar">
+  <meta property="og:description" content="Vídeos pra virar o jogo. Mande o vídeo certo pra cada pessoa.">
+  <meta property="og:type" content="website">
+  <meta property="og:locale" content="pt_BR">
+  <meta property="og:url" content="https://videospravirar.com.br/">
+  <meta property="og:image" content="https://videospravirar.com.br/assets/previa.jpg">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta property="og:image:alt" content="Vídeos pra virar o jogo. O vídeo certo pra cada pessoa.">
+  <meta name="twitter:card" content="summary_large_image">
+  <link rel="icon" href="favicon.svg" type="image/svg+xml">
+  <link rel="apple-touch-icon" href="assets/icone-180.png">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wdth,wght@12..96,75..100,300..800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="assets/styles.css">
+</head>
+<body>
+  <a class="pular" href="#lista">Pular para os vídeos</a>
+
+  <div class="palco">
+    <header class="topo">
+      <div class="topo-inner">
+        <a class="marca" href="./">
+          <span class="estrela" aria-hidden="true">
+            <svg viewBox="0 0 24 24"><path d="M12 2.5l2.9 6.3 6.9.7-5.2 4.6 1.5 6.8L12 17.4l-6.1 3.5 1.5-6.8L2.2 9.5l6.9-.7z"/></svg>
+          </span>
+          <span data-nome>Vídeos pra virar</span>
+        </a>
+        <span class="selo">Voluntário, não oficial</span>
+      </div>
+    </header>
+
+    <section class="hero" aria-labelledby="titulo">
+      <h1 class="titulo-hero" id="titulo">Vídeos pra virar o jogo.</h1>
+      <p class="frase-lead" id="frase-lead">Quero mandar um vídeo</p>
+      <div class="seletores" role="group" aria-labelledby="frase-lead">
+        <label class="campo campo-frase" for="hero-publico">
+          <span class="campo-prefixo">pra</span>
+          <span class="campo-caixa"><select id="hero-publico" aria-label="Pra quem"></select><span class="campo-seta" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M6 9l6 6 6-6"/></svg></span></span>
+        </label>
+        <label class="campo campo-frase" for="hero-canal">
+          <span class="campo-prefixo">pelo</span>
+          <span class="campo-caixa"><select id="hero-canal" aria-label="Por onde"></select><span class="campo-seta" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M6 9l6 6 6-6"/></svg></span></span>
+        </label>
+      </div>
+      <p class="apoio">Cada vídeo vem pronto pra mandar ou baixar, com uma mensagem sugerida e argumentos pra te ajudar na conversa.</p>
+    </section>
+  </div>
+
+  <main id="lista" tabindex="-1">
+    <div class="temas" role="group" aria-label="Filtrar por tema" id="temas"></div>
+
+    <p class="contagem" id="contagem" aria-live="polite">Carregando vídeos…</p>
+    <ul class="grade" id="grade"></ul>
+    <div class="vazio" id="vazio" hidden>
+      <p>Ainda não tem vídeo pra essa combinação.</p>
+      <button type="button" class="btn" id="limpar">Ver todos os vídeos</button>
+    </div>
+  </main>
+
+  <footer class="rodape">
+    <div class="rodape-inner">
+      <p><strong data-nome>Vídeos pra virar</strong> é uma iniciativa voluntária, sem vínculo oficial com campanha, partido ou governo.</p>
+      <p>Os vídeos foram publicados originalmente pelos perfis indicados em cada um. O site não coleta dados de quem envia nem de quem recebe.</p>
+    </div>
+  </footer>
+
+  <!-- Vídeo aberto -->
+  <dialog class="modal" id="modal" aria-labelledby="modal-titulo">
+    <form method="dialog" class="modal-fechar">
+      <button class="fechar">Fechar</button>
+    </form>
+    <div class="modal-corpo">
+      <div class="player" id="player"></div>
+      <div class="painel">
+        <p class="painel-tema" id="modal-tema"></p>
+        <h2 id="modal-titulo"></h2>
+        <div class="campos">
+          <label class="campo campo-neutro" for="sel-publico">
+            <span class="campo-rotulo">Pra quem</span>
+            <span class="campo-caixa"><select id="sel-publico"></select><span class="campo-seta" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M6 9l6 6 6-6"/></svg></span></span>
+          </label>
+          <label class="campo campo-neutro" for="sel-canal">
+            <span class="campo-rotulo">Por onde</span>
+            <span class="campo-caixa"><select id="sel-canal"></select><span class="campo-seta" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M6 9l6 6 6-6"/></svg></span></span>
+          </label>
+        </div>
+        <div class="acao-principal" id="acao-principal"></div>
+        <p class="nota" id="nota-arquivo"></p>
+        <label class="legenda-rotulo" for="legenda">Mensagem que vai junto <span>(você pode editar)</span></label>
+        <textarea id="legenda" rows="6"></textarea>
+        <div class="acoes" id="acoes" aria-label="Outras opções"></div>
+        <section class="argumentos" aria-labelledby="arg-titulo">
+          <h3 id="arg-titulo">Pra te ajudar na conversa</h3>
+          <p class="arg-duvida"><strong>Dúvida que o vídeo responde:</strong> <span id="modal-objecao"></span></p>
+          <ul id="modal-argumentos"></ul>
+        </section>
+        <div class="extra">
+          <p><a id="link-guia" target="_blank" rel="noopener">Dicas pra conversar com essa pessoa</a></p>
+          <p><a id="link-fonte" target="_blank" rel="noopener">Ver a publicação original</a></p>
+        </div>
+      </div>
+    </div>
+  </dialog>
+
+  <div class="toast" id="toast" role="status" aria-live="polite"></div>
+
+  <script src="assets/app.js"></script>
+</body>
+</html>

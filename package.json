@@ -1,0 +1,9 @@
+{
+  "name": "videos-pra-virar",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "dev": "python3 -m http.server 8000",
+    "build": "node scripts/build-paginas.mjs"
+  }
+}
