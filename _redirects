@@ -1,0 +1,3 @@
+# Domínio curto redireciona para o principal (adicione virar13.com.br como "domain alias" no Netlify)
+https://virar13.com.br/*      https://videospravirar.com.br/:splat  301!
+https://www.virar13.com.br/*  https://videospravirar.com.br/:splat  301!

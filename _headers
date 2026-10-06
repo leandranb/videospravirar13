@@ -1,6 +1,0 @@
-# Cabeçalhos do Cloudflare Pages (também funciona no Netlify)
-/data/acervo.json
-  Cache-Control: public, max-age=60
-
-/assets/*
-  Cache-Control: public, max-age=3600

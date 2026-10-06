@@ -13,8 +13,10 @@ assets/app.js            filtros, ranking, legenda por canal, compartilhamento
 data/acervo.json         TODO o conteúdo: config, públicos, canais, temas e vídeos
 scripts/gerar-variacoes.sh   gera 9x16, 9x16-leve, 1x1, 16x9, thumb e áudio com ffmpeg
 scripts/build-paginas.mjs    gera /v/<slug>/ com a prévia do link para o WhatsApp
-_headers                 cache no Cloudflare Pages/Netlify
-r2-cors.json             permissão para o site baixar/compartilhar os vídeos do bucket
+netlify.toml             build e cache no Netlify
+_redirects               virar13.com.br → videospravirar.com.br
+hostinger-videos/.htaccess   CORS e cache para a pasta de vídeos na Hostinger
+r2-cors.json             (plano B) CORS se os vídeos forem para o Cloudflare R2
 ```
 
 Não tem framework nem dependências. Para mexer no conteúdo, só edite `data/acervo.json`.
@@ -28,30 +30,28 @@ npm run dev      # ou: python3 -m http.server 8000
 
 ## Onde hospedar e onde guardar os vídeos
 
-**Recomendação: tudo numa conta Cloudflare.**
+**Configuração atual: Netlify (site) + Hostinger (domínio e vídeos).** Cloudflare R2 fica como plano B se o tráfego de vídeo crescer.
 
-| O quê | Onde | Por quê |
+| O quê | Onde | Observação |
 |---|---|---|
-| Site | Cloudflare Pages | Grátis, deploy a cada push no GitHub, roda o `build-paginas.mjs` |
-| Vídeos | Cloudflare R2 | Não cobra pela banda de saída, que é o custo que explode com vídeo viral. Tem cota gratuita de armazenamento (confira os valores atuais) |
-| Domínio | Qualquer registrador (.com.br no Registro.br) | Aponte o site e um subdomínio `videos.` para o bucket |
+| Site | Netlify | Só HTML, CSS, JS e imagens leves: consome pouca banda. `netlify.toml` já configurado |
+| Domínios | Hostinger (ou Registro.br) | DNS apontando para o Netlify; `virar13.com.br` como alias que redireciona |
+| Vídeos | Hostinger, subdomínio `videos.videospravirar.com.br` | Usa o `.htaccess` de `hostinger-videos/` |
+| Plano B dos vídeos | Cloudflare R2 | Não cobra banda de saída; trocar só `videosBaseUrl` no `acervo.json` |
 
-Por que não guardar os vídeos junto com o site: os planos gratuitos de hospedagem estática têm limite de banda, e um único vídeo viral no WhatsApp consome esse limite rápido. Separar site e arquivos protege o site de cair.
+**Por que os vídeos NÃO vão no Netlify.** O plano gratuito do Netlify funciona por créditos (300/mês): cada GB de banda gasta 20 créditos e cada deploy gasta 15. Isso dá no máximo uns 15 GB de banda por mês, e quando os créditos acabam o site é pausado até o mês seguinte. Um vídeo de 15 MB baixado mil vezes já consome isso. Com os vídeos fora, o site em si gasta muito pouco. Confira os valores atuais no painel do Netlify.
 
-**Alternativas**
-- Netlify (como o site de referência) para o site + R2 para os vídeos. Funciona igual.
-- Bunny Storage + CDN para os vídeos, se preferir pagar pouco por GB com painel mais simples.
-- Se no futuro quiser player adaptativo (qualidade muda com a conexão), Cloudflare Stream ou Mux. Para o MVP, MP4 direto do R2 basta.
+**Cuidado com deploys no Netlify gratuito.** Cada publicação gasta créditos. Junte várias atualizações de conteúdo num commit só, em vez de publicar vídeo por vídeo.
+
+**Sobre a Hostinger para vídeos.** Funciona se você tem um plano de hospedagem (não só o domínio). Hospedagem compartilhada não foi feita para muito tráfego de vídeo: se um vídeo viralizar, pode ficar lenta ou bater em limite de uso. Acompanhe o painel de uso nos primeiros dias. Se apertar, migre os vídeos para o R2 (o site não muda, só a `videosBaseUrl`).
 
 ## Passo a passo do deploy
 
-1. **Repositório**: suba esta pasta para um repositório no GitHub.
-2. **Bucket**: no painel da Cloudflare, crie um bucket R2 (ex.: `videos-pra-virar`). Em *Settings*, conecte o domínio `videos.videospravirar.com.br` e cole o conteúdo de `r2-cors.json` em *CORS policy* (troque o domínio).
-3. **Site**: em *Workers & Pages → Create → Pages*, conecte o repositório.
-   - Build command: `node scripts/build-paginas.mjs`
-   - Build output directory: `/` (a raiz)
-4. **Domínios**: conecte `videospravirar.com.br` ao projeto Pages. Para o curto `virar13.com.br`, adicione o domínio na Cloudflare e crie um *Redirect Rule* (ou *Bulk Redirect*) de `virar13.com.br/*` para `https://videospravirar.com.br/${1}` com código 301. Assim só existe um endereço "oficial" nos links compartilhados, e a prévia do WhatsApp nunca se divide entre dois domínios.
-5. **Config**: em `data/acervo.json`, troque `siteUrl` e `videosBaseUrl` pelos domínios reais.
+1. **Repositório**: crie um repositório no GitHub e envie esta pasta (o git já está iniciado: `git remote add origin <url>` e `git push -u origin main`).
+2. **Site no Netlify**: *Add new site → Import from Git*, escolha o repositório. Build command e pasta já vêm do `netlify.toml`.
+3. **Domínios**: em *Domain management*, adicione `videospravirar.com.br` como domínio principal e `virar13.com.br` como alias. Na Hostinger, aponte o DNS dos dois domínios para o Netlify (o Netlify mostra os registros). O redirecionamento do curto para o principal já está no `_redirects`.
+4. **Subdomínio de vídeos na Hostinger**: no hPanel, crie o subdomínio `videos.videospravirar.com.br` (ele precisa de um registro DNS próprio apontando para a Hostinger, mesmo com o domínio principal no Netlify). Envie o `.htaccess` de `hostinger-videos/` para a pasta pública do subdomínio.
+5. **Config**: `siteUrl` e `videosBaseUrl` em `data/acervo.json` já estão com os domínios pretendidos. Ajuste se mudar.
 
 ## Como adicionar um vídeo
 
@@ -60,11 +60,7 @@ Por que não guardar os vídeos junto com o site: os planos gratuitos de hospeda
    ./scripts/gerar-variacoes.sh originais/meu-video.mp4 video-07
    ```
    Isso cria `saida/video-07/` com `9x16.mp4`, `9x16-leve.mp4`, `1x1.mp4`, `16x9.mp4`, `thumb.jpg` e `audio.m4a`.
-2. Suba a pasta para o bucket mantendo o caminho `video-07/...`:
-   ```bash
-   npx wrangler r2 object put videos-pra-virar/video-07/9x16.mp4 --file saida/video-07/9x16.mp4 --remote
-   # repita para cada arquivo, ou use rclone para subir a pasta inteira
-   ```
+2. Suba a pasta `saida/video-07/` inteira para a pasta pública do subdomínio de vídeos na Hostinger (pelo Gerenciador de Arquivos do hPanel ou FTP), mantendo o nome `video-07/`. O resultado deve abrir em `https://videos.videospravirar.com.br/video-07/9x16.mp4`.
 3. Adicione o vídeo em `data/acervo.json` (copie um existente). Campos:
    - `slug`: igual ao nome da pasta no bucket
    - `publicado`: `true` só depois que os arquivos estiverem no bucket

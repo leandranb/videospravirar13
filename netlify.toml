@@ -1,0 +1,14 @@
+# Deploy no Netlify
+[build]
+  command = "node scripts/build-paginas.mjs"
+  publish = "."
+
+# Cache: dados com cache curto (conteúdo novo aparece rápido), assets com cache maior
+[[headers]]
+  for = "/data/*"
+  [headers.values]
+    Cache-Control = "public, max-age=60"
+[[headers]]
+  for = "/assets/*"
+  [headers.values]
+    Cache-Control = "public, max-age=3600"

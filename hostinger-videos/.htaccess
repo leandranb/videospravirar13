@@ -1,0 +1,12 @@
+# Coloque este arquivo na pasta pública do subdomínio videos.videospravirar.com.br (Hostinger)
+# Permite que o site baixe/compartilhe o arquivo do vídeo (Web Share API)
+<IfModule mod_headers.c>
+  Header set Access-Control-Allow-Origin "https://videospravirar.com.br"
+  Header set Access-Control-Allow-Methods "GET, HEAD"
+  <FilesMatch "\.(mp4|jpg|m4a)$">
+    Header set Cache-Control "public, max-age=604800, immutable"
+  </FilesMatch>
+</IfModule>
+AddType video/mp4 .mp4
+AddType audio/mp4 .m4a
+Options -Indexes

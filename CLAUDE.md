@@ -14,6 +14,9 @@ Dois eixos escolhidos pela pessoa, nenhum mais importante que o outro:
 
 Vídeos aparecem para um público se estiverem em `video.segmentos` (prioridade) ou se o `video.tema` estiver em `segmento.temasPonte` (pontos em comum entre o programa de Lula e o do candidato em que a pessoa votou).
 
+## Infra
+Site no Netlify (créditos limitados no plano gratuito: evitar deploys desnecessários, agrupar mudanças). Domínios e vídeos na Hostinger (subdomínio videos.videospravirar.com.br). Vídeos nunca no Netlify. Plano B: Cloudflare R2.
+
 ## Regras do projeto
 - Sem framework e sem dependências no front. HTML + CSS + JS puro.
 - Todo conteúdo em `data/acervo.json`. Não escrever conteúdo dentro do JS ou HTML.
