@@ -15,7 +15,8 @@ scripts/gerar-variacoes.sh   gera 9x16, 9x16-leve, 1x1, 16x9, thumb e áudio com
 scripts/build-paginas.mjs    gera /v/<slug>/ com a prévia do link para o WhatsApp
 netlify.toml             build e cache no Netlify
 _redirects               virar13.com.br → videospravirar.com.br
-hostinger-videos/.htaccess   CORS e cache para a pasta de vídeos na Hostinger
+cloudflare-arquivos/_headers CORS e cache para a pasta de vídeos no Cloudflare (em uso)
+hostinger-videos/.htaccess   CORS e cache para a pasta de vídeos na Hostinger (opção guardada)
 r2-cors.json             (plano B) CORS se os vídeos forem para o Cloudflare R2
 ```
 
@@ -30,7 +31,7 @@ npm run dev      # ou: python3 -m http.server 8000
 
 ## Onde hospedar e onde guardar os vídeos
 
-**Configuração atual: Netlify (site) + Hostinger (domínio e vídeos).** Cloudflare R2 fica como plano B se o tráfego de vídeo crescer.
+**Configuração atual: Netlify (site, em `videospravirar13.netlify.app`) + Cloudflare (vídeos, em `videospravirar13-arquivos.leandranb.workers.dev`).** Sem domínio próprio por enquanto. A tabela abaixo descreve o plano original com domínio e Hostinger, guardado para quando houver domínio.
 
 | O quê | Onde | Observação |
 |---|---|---|
@@ -60,7 +61,7 @@ npm run dev      # ou: python3 -m http.server 8000
    ./scripts/gerar-variacoes.sh originais/meu-video.mp4 video-07
    ```
    Isso cria `saida/video-07/` com `9x16.mp4`, `9x16-leve.mp4`, `1x1.mp4`, `16x9.mp4`, `thumb.jpg` e `audio.m4a`.
-2. Suba a pasta `saida/video-07/` inteira para a pasta pública do subdomínio de vídeos na Hostinger (pelo Gerenciador de Arquivos do hPanel ou FTP), mantendo o nome `video-07/`. O resultado deve abrir em `https://videos.videospravirar.com.br/video-07/9x16.mp4`.
+2. Copie `saida/video-07/` para a sua pasta local `videos/` (que tem o `_headers` de `cloudflare-arquivos/` na raiz). No Cloudflare, em *Compute → Workers & Pages → videospravirar13-arquivos*, crie uma nova versão enviando a pasta `videos/` inteira (o envio substitui tudo, então a pasta precisa ter todos os vídeos). Cada arquivo pode ter no máximo 25 MB. O resultado deve abrir em `https://videospravirar13-arquivos.leandranb.workers.dev/video-07/9x16.mp4`.
 3. Adicione o vídeo em `data/acervo.json` (copie um existente). Campos:
    - `slug`: igual ao nome da pasta no bucket
    - `publicado`: `true` só depois que os arquivos estiverem no bucket

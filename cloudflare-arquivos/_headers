@@ -1,0 +1,6 @@
+# Coloque este arquivo na raiz da pasta enviada para o Cloudflare (videospravirar13-arquivos.leandranb.workers.dev)
+# Permite que o site baixe/compartilhe o arquivo do vídeo (Web Share API) e deixa o navegador guardar em cache
+/*
+  Access-Control-Allow-Origin: https://videospravirar13.netlify.app
+  Access-Control-Allow-Methods: GET, HEAD
+  Cache-Control: public, max-age=604800

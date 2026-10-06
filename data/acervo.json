@@ -1,8 +1,8 @@
 {
   "config": {
     "nome": "Vídeos pra virar",
-    "siteUrl": "https://videospravirar.com.br",
-    "videosBaseUrl": "https://videos.videospravirar.com.br",
+    "siteUrl": "https://videospravirar13.netlify.app",
+    "videosBaseUrl": "https://videospravirar13-arquivos.leandranb.workers.dev",
     "guiaConversaUrl": "https://www.ondedapraconversar.com.br/",
     "hashtags": [
       "#Lula13",
@@ -175,7 +175,7 @@
   "videos": [
     {
       "slug": "video-01",
-      "publicado": false,
+      "publicado": true,
       "titulo": "Título do vídeo 1",
       "tema": "saude",
       "duracao": "0:45",
